@@ -6,7 +6,8 @@ require_once __DIR__ . "/../db2_wrapper.php";
     class listModel {
 
         public function getAll() {
-            $sql = "SELECT * FROM `todo-list`";
+            $user_email = $_SESSION["id"];
+            $sql = "SELECT * FROM `todo-list` WHERE user_email = '$user_email'";
             $response = DB::run($sql)->fetch_all(MYSQLI_ASSOC);
 
             return $response;
@@ -16,6 +17,7 @@ require_once __DIR__ . "/../db2_wrapper.php";
             $sql = "DELETE  FROM `todo-list` WHERE id=$id";
             DB::run($sql);
         }
+
 
         public function getByID($id) {
             $sql = "SELECT *  FROM `todo-list` WHERE id=$id";
@@ -36,7 +38,9 @@ require_once __DIR__ . "/../db2_wrapper.php";
         }
 
         public function insertNew($content) {
-            $sql = "INSERT INTO `todo-list` (content) VALUE ('$content')";
+
+            $user_email = $_SESSION["id"];
+            $sql = "INSERT INTO `todo-list` (content, user_email) VALUE ('$content', '$user_email')";
             DB::run($sql);
         }
 
