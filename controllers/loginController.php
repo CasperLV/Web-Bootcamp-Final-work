@@ -23,10 +23,10 @@ if (!empty($_POST["email"])) {
                 $error = "Invalid password";
             }
         } else {
-            $error = "password not set";
+            echo "<script>alert('Password not set!');</script>";
         }
     } else{
-        $error = "User with email: '$email' does not exist";
+        echo "<script>alert('User does not exist!');</script>";
     }
 
     }

@@ -14,8 +14,6 @@
 
         DB::run($sql);
         Header("Location: /ToDo/?page=login");
-    } else {
-        echo("Some fields are missing");
     }
     $view = new RegisterView();
     $view->html();
